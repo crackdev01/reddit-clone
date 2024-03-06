@@ -3,22 +3,51 @@
 
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["driverAdapters"]
+    previewFeatures = ["relationJoins"]
 }
 
 datasource db {
     provider = "mysql"
     url      = env("DATABASE_URL")
-
-    // Do not use foreign keys (PlanetScale does not support them)
-    relationMode = "prisma"
 }
 
 model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id        Int         @id @default(autoincrement())
+    title     String
+    content   String
+    userId    String
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
+    Post_Vote Post_Vote[]
+    Comment   Comment[]
 
-    @@index([name])
+    @@index([title])
+}
+
+model Comment {
+    id           Int            @id @default(autoincrement())
+    comment      String
+    postId       Int
+    userId       String
+    parentId     Int
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    Post         Post           @relation(fields: [postId], references: [id])
+    Comment_Vote Comment_Vote[]
+}
+
+model Comment_Vote {
+    id        Int     @id @default(autoincrement())
+    userId    String
+    commentId Int
+    type      Int
+    Comment   Comment @relation(fields: [commentId], references: [id])
+}
+
+model Post_Vote {
+    id     Int    @id @unique @default(autoincrement())
+    userId String
+    postId Int
+    type   Int
+    Post   Post   @relation(fields: [postId], references: [id])
 }
