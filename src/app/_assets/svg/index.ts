@@ -1,0 +1,13 @@
+export * as PostSvg from "./post.svg";
+export * as PostActiveSvg from "./post-active.svg";
+export * as ArrowDownSvg from "./arrowDown.svg";
+export * as ArrowDownActiveSvg from "./arrowDown-active.svg";
+export * as ArrowUpSvg from "./arrowUp.svg";
+export * as ArrowUpActiveSvg from "./arrowUp-active.svg";
+export * as BackSvg from "./back.svg";
+export * as CommentSvg from "./comment.svg";
+export * as CommentActiveSvg from "./comment-active.svg";
+export * as HomeSvg from "./home.svg";
+export * as HomeActiveSvg from "./home-active.svg";
+export * as LoginSvg from "./login.svg";
+export * as LoginActiveSvg from "./login-active.svg";
