@@ -72,6 +72,8 @@ yarn dev
 6. **Test the development server**
 
 ### Environment for testing
+
+cypress.env.json
 ```env
 {
   "test_email": "your registered email",
